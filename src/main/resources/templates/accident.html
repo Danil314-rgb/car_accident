@@ -19,7 +19,7 @@
 
     <title>Accident</title>
 </head>
-<!-- Required meta tags -->
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Accident</title>
@@ -31,15 +31,15 @@
         <table class="table">
             <thead>
             <tr>
-                <th scope="col">#</th>
+                <th scope="col">ID</th>
                 <th scope="col">Имя</th>
+                <th scope="col">Тип аварии</th>
                 <th scope="col">Описание</th>
                 <th scope="col">Адрес</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="accident: ${accidents}">
-                <!--<td th:text="${accident.id}"></td>-->
                 <td>
                     <a th:href="@{|/formUpdateAccident/${accident.id}|}">
                         <i class="fa fa-edit"></i>
@@ -47,6 +47,7 @@
                     <span th:text="${accident.id}"></span>
                 </td>
                 <td th:text="${accident.name}"></td>
+                <td th:text="${accident.type.getName()}"></td>
                 <td th:text="${accident.text}"></td>
                 <td th:text="${accident.address}"></td>
             </tr>
