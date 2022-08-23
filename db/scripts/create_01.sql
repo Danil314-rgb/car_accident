@@ -22,3 +22,13 @@ create table accidents
     address text,
     type_id int references types (id)
 );
+
+create table users
+(
+    id       serial primary key,
+    name     text,
+    email    text not null unique,
+    password text not null
+);
+
+insert into users (id, name, email, password) values (1, 'Admin', 'Admin', 'Admin');

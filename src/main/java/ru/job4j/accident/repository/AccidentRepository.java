@@ -24,4 +24,9 @@ public interface AccidentRepository extends CrudRepository<Accident, Integer> {
             @Param("address") String address,
             @Param("id") int id
     );
+
+    @Transactional
+    @Modifying(clearAutomatically = true)
+    @Query("delete from Accident acc where acc.id = :id")
+    void delete(@Param("id") int id);
 }

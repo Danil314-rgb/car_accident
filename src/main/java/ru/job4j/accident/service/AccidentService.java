@@ -39,4 +39,8 @@ public class AccidentService {
                 accident.getId()
         );
     }
+
+    public void delete(int id) {
+        accidentRepository.delete(id);
+    }
 }

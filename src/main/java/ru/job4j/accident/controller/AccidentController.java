@@ -53,4 +53,10 @@ public class AccidentController {
         accidentService.update(accident);
         return "redirect:/accident";
     }
+
+    @GetMapping("/deleteAccident/{accidentId}")
+    public String deleteAccident(@PathVariable("accidentId") int id) {
+        accidentService.delete(id);
+        return "redirect:/accident";
+    }
 }

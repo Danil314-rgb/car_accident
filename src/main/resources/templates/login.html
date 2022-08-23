@@ -15,41 +15,34 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>Update_Accident</title>
+    <title>Login</title>
 </head>
-
 <body>
 <div class="container">
     <div class="col">
         <div class="card-header">
-            Редактирование инцидента:
+            Авторизация
         </div>
         <div class="card-body">
-            <form th:action="@{/updateAccident}" method="post" th:object="${accident}">
-                <input type="hidden" name="id" th:field="*{id}"/>
+            <div th:if="${fail}" class="alert alert-danger" role="alert">
+                Неверный логин или пароль!
+            </div>
+            <form th:action="@{/login}" method="post">
                 <div class="form-group">
-                    <label for="name">Имя</label>
-                    <input type="text" class="form-control" name="name" id="name" th:field="*{name}">
+                    <label for="email">Email</label>
+                    <input type="text" class="form-control" name="email" id="email">
                 </div>
                 <div class="form-group">
-                    <label for="type.id">Тип аварии</label>
-                    <select class="form-control" name="type.id" id="type.id">
-                        <option th:each="type: ${types}" th:value="${type.id}" th:text="${type.name}"></option>
-                    </select>
+                    <label for="password">Password</label>
+                    <input type="text" class="form-control" name="password" id="password">
                 </div>
-                <div class="form-group">
-                    <label for="text"> Содержание</label>
-                    <input type="text" class="form-control" name="text" id="text" th:field="*{text}">
-                </div>
-                <div class="form-group">
-                    <label for="address">Улица</label>
-                    <input type="text" class="form-control" name="address" id="address" th:field="*{address}">
-                </div>
-                <button type="submit" class="btn btn-primary">Редактировать</button>
+                <button type="submit" class="btn btn-primary">Войти</button>
             </form>
         </div>
     </div>
 </div>
+
 </body>
 </html>
