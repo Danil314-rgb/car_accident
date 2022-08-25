@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="utf-8">
@@ -17,7 +17,26 @@
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>Register</title>
+    <title>StartPage</title>
+</head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>StartPage</title>
+
+<style type="text/css">
+    .block1 {
+        margin-left: 50px;
+        font-size: 20px;
+    }
+
+    .block2 {
+        margin-left: 65px;
+        font-size: 17px;
+
+    }
+</style>
+
 </head>
 <body>
 <div class="container">
@@ -27,38 +46,44 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <a class="nav-item nav-link" th:href="@{/startPage}">Главная</a>
-            <a class="nav-item nav-link" th:if="${user.name != 'Гость'}" th:href="@{/accident}">
-                <span>Инциденты</span>
+            <a class="nav-item nav-link" th:if="${user.name == 'Гость'}" th:href="@{/loginPage}">
+                <span th:text="${user.name}"></span>
+                <span> | Войти </span>
             </a>
+            <a class="nav-item nav-link" th:if="${user.name != 'Гость'}" th:href="@{/accident}">
+                <span> Инциденты </span>
+            </a>
+            <a class="nav-item nav-link" th:if="${user.name == 'Гость'}" th:href="@{/registerPage}">
+                <span> Зарегистрироваться </span>
+            </a>
+            <a class="nav-item nav-link" th:if="${user.name != 'Гость'}" th:href="@{/logout}">
+                <span th:text="${user.name}"></span>
+                <span> | Выйти </span>
+            </a>
+
         </div>
     </nav>
-    <div class="col">
-        <div class="card-header">
-            Регистрация
-        </div>
-        <div class="card-body">
-            <div th:if="${fail}" class="alert alert-danger" role="alert">
-                Под таким логином уже существует пользователь!
-            </div>
-            <form th:action="@{/register}" method="post">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" name="name" id="name">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="text" class="form-control" name="email" id="email">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input class="form-control" name="password" id="password">
-                </div>
-                <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
-            </form>
-        </div>
-    </div>
 </div>
-
+<h2 align="center">Проект "Дорожные происшествия".</h2>
+<div class="block1">
+    <pre>
+        Добро пожаловать на начальную страницу!
+        ...
+        ...
+        ...
+        ...
+    </pre>
+</div>
+<div class="block2">
+    <p class="block2">
+        Для подробной информации перейдите по ссылке
+        <a href="https://github.com/Danil314-rgb/car_accident">
+            github.com
+        </a>
+    </p>
+    <p class="block2">
+        Для дальнейшего знакомства с проектом предлагаю вам Войти в систему или Зарегистрироваться.
+    </p>
+</div>
 </body>
 </html>

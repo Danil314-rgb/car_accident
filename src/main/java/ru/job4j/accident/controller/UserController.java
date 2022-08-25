@@ -41,7 +41,13 @@ public class UserController {
     }
 
     @GetMapping("/registerPage")
-    public String registerPage(Model model, @RequestParam(name = "fail", required = false) Boolean fail) {
+    public String registerPage(Model model, HttpSession session, @RequestParam(name = "fail", required = false) Boolean fail) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            user = new User();
+            user.setName("Гость");
+        }
+        model.addAttribute("user", user);
         model.addAttribute("fail", fail != null);
         return "register";
     }
@@ -54,5 +60,11 @@ public class UserController {
         }
         userService.create(user);
         return "redirect:/accident";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/startPage";
     }
 }

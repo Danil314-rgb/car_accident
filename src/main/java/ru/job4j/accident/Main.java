@@ -48,6 +48,6 @@ public class Main extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
-        System.out.println("Запуск проекта - " + "http://localhost:8080/accident");
+        System.out.println("Запуск проекта - " + "http://localhost:8080/startPage");
     }
 }

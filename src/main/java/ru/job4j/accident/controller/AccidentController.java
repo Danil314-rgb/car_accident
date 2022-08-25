@@ -5,8 +5,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
+import ru.job4j.accident.model.User;
 import ru.job4j.accident.service.AccidentService;
 import ru.job4j.accident.service.AccidentTypeService;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class AccidentController {
@@ -20,7 +23,9 @@ public class AccidentController {
     }
 
     @GetMapping("/accident")
-    public String accident(Model model) {
+    public String accident(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        model.addAttribute("user", user);
         model.addAttribute("accidents", accidentService.findAll());
         return "accident";
     }
